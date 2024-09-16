@@ -28,14 +28,17 @@ function Get-FerootVendorReport{
     process{
 
         #Convert to UNIX Time
-        $StartDate = ([DateTimeOffset]$StartDate).ToUnixTimeSeconds()*1000
-        $EndDate = ([DateTimeOffset]$EndDate).ToUnixTimeSeconds()*1000
-
-        $ProjectUUIDParam = $ProjectUUIDs | ForEach-Object { "projectUuids[]=$_" }
-        $ProjectUUIDParam = $ProjectUUIDParam -join "&"
+        $Start = ([DateTimeOffset]$StartDate).ToUnixTimeSeconds()*1000
+        $End = ([DateTimeOffset]$EndDate).ToUnixTimeSeconds()*1000
 
         # Complete URI with query parameters
-        $RelativeUri = "platform/vendors?startDate=$($ThirtyDaysAgo)&endDate=$($Today)&$($ProjectUUIDParam)"
+        $RelativeUri = "platform/vendors?startDate=$($Start)&endDate=$($End)"
+
+        if($ProjectUUIDs){
+            $ProjectUUIDParam = $ProjectUUIDs | ForEach-Object { "projectUuids[]=$_" }
+            $ProjectUUIDParam = $ProjectUUIDParam -join "&"
+            $RelativeUri += "&$($ProjectUUIDParam)"
+        }
 
         $RestSplat = @{
             Method = 'GET'
