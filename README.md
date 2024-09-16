@@ -3,7 +3,8 @@
 
 # What is This?
 
-This Powershell module acts as a wrapper for the Feroot REST API, allowing you to create scripts that run operations tasks in Feroot
+This Powershell module acts as a wrapper for the Feroot REST API, allowing you to create scripts that run operations tasks in Feroot.
+This module is not a feature-complete match of the Feroot API. Please consider contributing functions to this module or requesting functionality that may be valuable.
 
 # How do I install it?
 
@@ -24,6 +25,4 @@ Submit a PR on GitHub
 
 # To Do
 
-- Support for targeting by IPs with Scan functions
-- Prod/Dev BaseURI switching
-- Example Scripts
+
