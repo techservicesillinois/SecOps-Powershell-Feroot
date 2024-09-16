@@ -81,7 +81,7 @@ FunctionsToExport = @(
     'Copy-FerootPolicy',
     'Remove-FerootPolicy',
     'Get-FerootProjectConfiguration',
-    'Get-FerootPorjectGroups',
+    'Get-FerootProjectGroups',
     'Remove-FerootProject'
     )
 
