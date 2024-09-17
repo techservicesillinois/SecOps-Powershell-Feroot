@@ -25,4 +25,14 @@ Submit a PR on GitHub
 
 # To Do
 
+- New-FerootPolicy
+- Edit-FerootPolicy
+- New-FerootProject
+- Edit-FerootProject
+- New-FerootCrawl
+- Edit-FerootCrawl
+- New-FerootScriptTag
+- Edit-FerootScriptTag
+- Get-FerootPages
+
 
