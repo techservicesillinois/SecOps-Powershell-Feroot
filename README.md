@@ -34,8 +34,7 @@ Submit a PR on GitHub
 - New-FerootScriptTag
 - Edit-FerootScriptTag
 - All Cookies endpoint functions
-- Get-FerootAccessInsights
-- All Compliance endpoint functions
+- New-FerootComplianceReport
 - Get-FerootDataTransfers
 - Get-FerootDataTransferDetails
 
