@@ -19,11 +19,11 @@
 .PARAMETER Descending
     Order of the sorted elements, specify for descending order
 .EXAMPLE
-    Get-FerootProjectIssue
+    Get-FerootIssue
 .EXAMPLE
-    Get-FerootProjectIssue -Status "Open"
+    Get-FerootIssue -Status "Open"
 .EXAMPLE
-    Get-FerootProjectIssue -ProjectUUIDs $ProjectUUIDs -SortKey "violationCount" -Descending
+    Get-FerootIssue -ProjectUUIDs $ProjectUUIDs -SortKey "violationCount" -Descending
 #>
 function Get-FerootIssue{
     [CmdletBinding(DefaultParameterSetName = 'NoSort')]
