@@ -15,7 +15,7 @@
     Set-FerootCrawlStatus -Status 'Disabled' -ProjectUUID '00000000-0000-0000-0000-000000000000' -CrawlUUID '00000000-0000-0000-0000-000000000000'
 #>
 function Set-FerootCrawlStatus{
-    [CmdletBinding()]
+    [CmdletBinding(SupportsShouldProcess)]
     param (
         [ValidateSet("Enabled", "Disabled")]
         [Parameter(Mandatory=$true)]
@@ -28,27 +28,29 @@ function Set-FerootCrawlStatus{
 
     process{
 
-        # Complete URI with query parameters
-        $RelativeUri = "platform/$($ProjectUUID)/data-source/crawl/$($CrawlUUID)/status"
+        if ($PSCmdlet.ShouldProcess("$($ProjectUUID)/$($CrawlUUID)", "Change Crawl Status to $($Status)")) {
+            # Complete URI with query parameters
+            $RelativeUri = "platform/$($ProjectUUID)/data-source/crawl/$($CrawlUUID)/status"
 
-        If($Status -eq 'Enabled'){
-            $Body = @{
-                enabled = 'true'
+            If($Status -eq 'Enabled'){
+                $Body = @{
+                    enabled = 'true'
+                }
             }
-        }
-        Else{
-            $Body = @{
-                enabled = 'false'
+            Else{
+                $Body = @{
+                    enabled = 'false'
+                }
             }
-        }
 
-        $RestSplat = @{
-            Method = 'PATCH'
-            RelativeURI = $RelativeUri
-            Body = $Body
-        }
+            $RestSplat = @{
+                Method = 'PATCH'
+                RelativeURI = $RelativeUri
+                Body = $Body
+            }
 
-        $Response = Invoke-FerootRestCall @RestSplat
-        $Response
+            $Response = Invoke-FerootRestCall @RestSplat
+            $Response
+        }
     }
 }

@@ -10,7 +10,7 @@
     Remove-FerootProject -ProjectUUID '00000000-0000-0000-0000-000000000000'
 #>
 function Remove-FerootProject{
-    [CmdletBinding()]
+    [CmdletBinding(SupportsShouldProcess)]
     param (
         [Parameter(Mandatory=$true)]
         [string]$ProjectUUID
@@ -18,15 +18,17 @@ function Remove-FerootProject{
 
     process{
 
-        # Complete URI with query parameters
-        $RelativeUri = "platform/$($ProjectUUID)"
+        if ($PSCmdlet.ShouldProcess("$($ProjectUUID)", "Delete Project")) {
+            # Complete URI with query parameters
+            $RelativeUri = "platform/$($ProjectUUID)"
 
-        $RestSplat = @{
-            Method = 'DELETE'
-            RelativeURI = $RelativeUri
+            $RestSplat = @{
+                Method = 'DELETE'
+                RelativeURI = $RelativeUri
+            }
+
+            $Response = Invoke-FerootRestCall @RestSplat
+            $Response
         }
-
-        $Response = Invoke-FerootRestCall @RestSplat
-        $Response
     }
 }

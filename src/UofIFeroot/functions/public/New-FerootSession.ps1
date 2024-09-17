@@ -20,14 +20,16 @@
     New-FerootSession -Credential $Credential
 #>
 function New-FerootSession{
+    [CmdletBinding(SupportsShouldProcess)]
     param (
         [Parameter(Mandatory)]
         [System.Management.Automation.PSCredential]$Credential
     )
 
     process{
-
-        # Extract the API key (password) from the PSCredential object
-        $Script:Session = $Credential.GetNetworkCredential().Password
+        if ($PSCmdlet.ShouldProcess("$($Credential)")){
+            # Extract the API key (password) from the PSCredential object
+            $Script:Session = $Credential.GetNetworkCredential().Password
+        }
     }
 }

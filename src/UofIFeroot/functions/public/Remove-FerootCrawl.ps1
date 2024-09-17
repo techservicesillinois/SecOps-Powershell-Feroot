@@ -15,7 +15,7 @@
     Set-FerootCrawlStatus -Status 'Disabled' -ProjectUUID '00000000-0000-0000-0000-000000000000' -CrawlUUID '00000000-0000-0000-0000-000000000000'
 #>
 function Remove-FerootCrawl{
-    [CmdletBinding()]
+    [CmdletBinding(SupportsShouldProcess)]
     param (
         [Parameter(Mandatory=$true)]
         [string]$ProjectUUID,
@@ -25,15 +25,17 @@ function Remove-FerootCrawl{
 
     process{
 
-        # Complete URI with query parameters
-        $RelativeUri = "platform/$($ProjectUUID)/data-source/crawl/$($CrawlUUID)"
+        if ($PSCmdlet.ShouldProcess("$($ProjectUUID)/$($CrawlUUID)", "Delete Crawl")) {
+            # Complete URI with query parameters
+            $RelativeUri = "platform/$($ProjectUUID)/data-source/crawl/$($CrawlUUID)"
 
-        $RestSplat = @{
-            Method = 'DELETE'
-            RelativeURI = $RelativeUri
-        }
+            $RestSplat = @{
+                Method = 'DELETE'
+                RelativeURI = $RelativeUri
+            }
 
-        $Response = Invoke-FerootRestCall @RestSplat
-        $Response
+            $Response = Invoke-FerootRestCall @RestSplat
+            $Response
+    }
     }
 }
