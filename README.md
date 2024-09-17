@@ -37,5 +37,3 @@ Submit a PR on GitHub
 - New-FerootComplianceReport
 - Get-FerootDataTransfers
 - Get-FerootDataTransferDetails
-
-
