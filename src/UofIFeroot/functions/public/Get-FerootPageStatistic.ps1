@@ -1,27 +1,23 @@
 ﻿<#
 .Synopsis
-    Returns the details of activity on a particular page within a specified time interval.
+    Returns a summary of the pages detected in your Feroot Project(s) within a specified time range.
 .DESCRIPTION
-    Returns the details of activity on a particular page within a specified time interval.
-.PARAMETER PageID
-    The ID of a page
+    Returns a summary of the pages detected in your Feroot Project(s) within a specified time range.
 .PARAMETER ProjectUUIDs
     An array of Project UUIDs
-    Use Get-FerootProjects to get Project UUIDs
+    Use Get-FerootProject to get Project UUIDs
 .PARAMETER StartDate
     Timestamp of the start of the date range
 .PARAMETER EndDate
     Timestamp of the end of the date range
 .EXAMPLE
-    Get-FerootPageDetails -StartDate (Get-Date).AddDays(-30) -EndDate (Get-Date) -PageID 'd970adbbdaae64d521b9ad0a7dfc208415f8eef8'
+    Get-FerootPageStatistic -StartDate (Get-Date).AddDays(-30) -EndDate (Get-Date)
 .EXAMPLE
-    Get-FerootPageDetails -PageID 'd970adbbdaae64d521b9ad0a7dfc208415f8eef8' -ProjectUUIDs @('00000000-0000-0000-0000-000000000000') -StartDate (Get-Date).AddDays(-30) -EndDate (Get-Date)
+    Get-FerootPageStatistic -ProjectUUIDs @('00000000-0000-0000-0000-000000000000', '11111111-0000-0000-0000-1111111111111') -StartDate (Get-Date).AddDays(-30) -EndDate (Get-Date)
 #>
-function Get-FerootPageDetails{
+function Get-FerootPageStatistic{
     [CmdletBinding()]
     param (
-        [Parameter(Mandatory=$true)]
-        [string]$PageID,
         [string[]]$ProjectUUIDs,
         [Parameter(Mandatory=$true)]
         [datetime]$StartDate,
@@ -36,7 +32,7 @@ function Get-FerootPageDetails{
         $End = ([DateTimeOffset]$EndDate).ToUnixTimeSeconds()*1000
 
         # Complete URI with query parameters
-        $RelativeUri = "platform/pages?pageId=$($PageID)&startDate=$($Start)&endDate=$($End)"
+        $RelativeUri = "platform/pages/stats?startDate=$($Start)&endDate=$($End)"
 
         if($ProjectUUIDs){
             $ProjectUUIDParam = $ProjectUUIDs | ForEach-Object { "projectUuids[]=$_" }

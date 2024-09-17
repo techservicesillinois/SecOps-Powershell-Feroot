@@ -6,9 +6,9 @@
     This includes the data source limits that apply to every Feroot Project associated with your organization's account.
     To adjust these limits, contact us at support@feroot.com
 .EXAMPLE
-    Get-FerootDataSourceLimits
+    Get-FerootDataSourceLimit
 #>
-function Get-FerootDataSourceLimits{
+function Get-FerootDataSourceLimit{
 
     process{
 

@@ -5,7 +5,7 @@
     Returns the overall vendor statistics and a list of vendors' products detected in Feroot Projects within a specified time range.
 .PARAMETER ProjectUUIDs
     An array of Project UUIDs
-    Use Get-FerootProjects to get Project UUIDs
+    Use Get-FerootProject to get Project UUIDs
 .PARAMETER StartDate
     Timestamp of the start of the date range
 .PARAMETER EndDate

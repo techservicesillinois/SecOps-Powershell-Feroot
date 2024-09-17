@@ -5,7 +5,7 @@
     Deletes a Feroot project
 .PARAMETER ProjectUUID
     Project UUID to delete
-    Use Get-FerootProjects to get Project UUIDs
+    Use Get-FerootProject to get Project UUIDs
 .EXAMPLE
     Remove-FerootProject -ProjectUUID '00000000-0000-0000-0000-000000000000'
 #>

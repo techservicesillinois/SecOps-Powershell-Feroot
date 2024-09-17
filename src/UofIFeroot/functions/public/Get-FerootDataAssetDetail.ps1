@@ -10,17 +10,17 @@
         "cc_number", "cc_code", "cc_other", "date_of_birth", "allergies", "medications", "med_conditions", "other"
 .PARAMETER ProjectUUIDs
     An array of Project UUIDs
-    Use Get-FerootProjects to get Project UUIDs
+    Use Get-FerootProject to get Project UUIDs
 .PARAMETER StartDate
     Timestamp of the start of the date range
 .PARAMETER EndDate
     Timestamp of the end of the date range
 .EXAMPLE
-    Get-FerootDataAssetDetails -StartDate (Get-Date).AddDays(-30) -EndDate (Get-Date) -AssetName "email"
+    Get-FerootDataAssetDetail -StartDate (Get-Date).AddDays(-30) -EndDate (Get-Date) -AssetName "email"
 .EXAMPLE
-    Get-FerootDataAssetDetails -AssetName "password" -ProjectUUIDs @('00000000-0000-0000-0000-000000000000') -StartDate (Get-Date).AddDays(-30) -EndDate (Get-Date)
+    Get-FerootDataAssetDetail -AssetName "password" -ProjectUUIDs @('00000000-0000-0000-0000-000000000000') -StartDate (Get-Date).AddDays(-30) -EndDate (Get-Date)
 #>
-function Get-FerootDataAssetDetails{
+function Get-FerootDataAssetDetail{
     [CmdletBinding()]
     param (
         [ValidateSet("email", "password", "username", "name", "first_name", "last_name",

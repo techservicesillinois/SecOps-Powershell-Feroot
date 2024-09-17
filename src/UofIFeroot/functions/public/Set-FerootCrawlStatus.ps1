@@ -5,10 +5,10 @@
     Enables or disables a Web Crawl data source in a Feroot Project.
 .PARAMETER ProjectUUID
     Project UUID of the crawl to change the status of
-    Use Get-FerootProjects to get Project UUIDs
+    Use Get-FerootProject to get Project UUIDs
 .PARAMETER CrawlUUID
     UUID of a crawl associated with the project
-    Use Get-FerootProjectDataSources to get Crawl UUIDs
+    Use Get-FerootProjectDataSource to get Crawl UUIDs
 .EXAMPLE
     Set-FerootCrawlStatus -Status 'Enabled' -ProjectUUID '00000000-0000-0000-0000-000000000000' -CrawlUUID '00000000-0000-0000-0000-000000000000'
 .EXAMPLE

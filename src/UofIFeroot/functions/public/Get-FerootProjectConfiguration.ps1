@@ -5,7 +5,7 @@
     Returns the specified Feroot Project's configuration.
 .PARAMETER ProjectUUID
     Project UUID to return the configuration of
-    Use Get-FerootProjects to get Project UUIDs
+    Use Get-FerootProject to get Project UUIDs
 .EXAMPLE
     Get-FerootProjectConfiguration -ProjectUUID '00000000-0000-0000-0000-000000000000'
 #>

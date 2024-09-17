@@ -33,7 +33,6 @@ Submit a PR on GitHub
 - Edit-FerootCrawl
 - New-FerootScriptTag
 - Edit-FerootScriptTag
-- Get-FerootPages
 - All Scripts endpoint functions
 - All Cookies endpoint functions
 - Get-FerootAccessInsights

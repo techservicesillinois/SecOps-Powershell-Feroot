@@ -4,9 +4,9 @@
 .DESCRIPTION
     Returns a list of all policies from the Policy Engine.
 .EXAMPLE
-    Get-FerootPolicies
+    Get-FerootPolicy
 #>
-function Get-FerootPolicies{
+function Get-FerootPolicy{
 
     process{
 

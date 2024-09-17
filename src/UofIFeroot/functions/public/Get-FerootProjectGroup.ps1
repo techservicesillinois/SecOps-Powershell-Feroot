@@ -4,9 +4,9 @@
 .DESCRIPTION
     Returns a list of project groups/folders.
 .EXAMPLE
-    Get-FerootProjectGroups
+    Get-FerootProjectGroup
 #>
-function Get-FerootProjectGroups{
+function Get-FerootProjectGroup{
 
     process{
 
