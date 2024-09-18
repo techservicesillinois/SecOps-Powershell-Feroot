@@ -5,10 +5,10 @@
     Returns the configuration of a Web Crawl data source in a Feroot Project
 .PARAMETER ProjectUUID
     Project UUID of the crawl to return the configuration of
-    Use Get-FerootProjects to get Project UUIDs
+    Use Get-FerootProject to get Project UUIDs
 .PARAMETER CrawlUUID
     UUID of a crawl data source associated with the project
-    Use Get-FerootProjectDataSources to get Crawl UUIDs
+    Use Get-FerootProjectDataSource to get Crawl UUIDs
 .EXAMPLE
     Get-FerootCrawlConfiguration -ProjectUUID '00000000-0000-0000-0000-000000000000' -CrawlUUID '00000000-0000-0000-0000-000000000000'
 #>

@@ -7,9 +7,9 @@
     UUID of the issue to return details for
     Use Get-FerootProjectIssues to get Issue UUIDs
 .EXAMPLE
-    Get-FerootIssueDetails -IssueUuid '00000000-0000-0000-0000-000000000000'
+    Get-FerootIssueDetail -IssueUuid '00000000-0000-0000-0000-000000000000'
 #>
-function Get-FerootIssueDetails{
+function Get-FerootIssueDetail{
     param (
         [Parameter(Mandatory=$true)]
         [string]$IssueUuid

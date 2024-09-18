@@ -21,9 +21,9 @@
 .PARAMETER Descending
     Order of the sorted elements, specify for descending order
 .EXAMPLE
-    Get-FerootProjects -Search 'Health' -SortField 'name' -Descending
+    Get-FerootProject -Search 'Health' -SortField 'name' -Descending
 #>
-function Get-FerootProjects{
+function Get-FerootProject{
     [CmdletBinding(DefaultParameterSetName = 'NoSort')]
     param (
         [string]$Search,

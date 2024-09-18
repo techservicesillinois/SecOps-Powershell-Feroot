@@ -1,8 +1,10 @@
 ﻿<#
 .Synopsis
-    Returns the overall vendor statistics and a list of vendors' products detected in Feroot Projects within a specified time range.
+    Returns the details of activity on a particular page within a specified time interval.
 .DESCRIPTION
-    Returns the overall vendor statistics and a list of vendors' products detected in Feroot Projects within a specified time range.
+    Returns the details of activity on a particular page within a specified time interval.
+.PARAMETER PageID
+    The ID of a page
 .PARAMETER ProjectUUIDs
     An array of Project UUIDs
     Use Get-FerootProject to get Project UUIDs
@@ -11,13 +13,15 @@
 .PARAMETER EndDate
     Timestamp of the end of the date range
 .EXAMPLE
-    Get-FerootVendorReport -StartDate (Get-Date).AddDays(-30) -EndDate (Get-Date)
+    Get-FerootPageDetail -StartDate (Get-Date).AddDays(-30) -EndDate (Get-Date) -PageID 'd970adbbdaae64d521b9ad0a7dfc208415f8eef8'
 .EXAMPLE
-    Get-FerootVendorReport -ProjectUUIDs @('00000000-0000-0000-0000-000000000000', '11111111-0000-0000-0000-1111111111111') -StartDate (Get-Date).AddDays(-30) -EndDate (Get-Date)
+    Get-FerootPageDetail -PageID 'd970adbbdaae64d521b9ad0a7dfc208415f8eef8' -ProjectUUIDs @('00000000-0000-0000-0000-000000000000') -StartDate (Get-Date).AddDays(-30) -EndDate (Get-Date)
 #>
-function Get-FerootVendorReport{
+function Get-FerootPageDetail{
     [CmdletBinding()]
     param (
+        [Parameter(Mandatory=$true)]
+        [string]$PageID,
         [string[]]$ProjectUUIDs,
         [Parameter(Mandatory=$true)]
         [datetime]$StartDate,
@@ -32,7 +36,7 @@ function Get-FerootVendorReport{
         $End = ([DateTimeOffset]$EndDate).ToUnixTimeSeconds()*1000
 
         # Complete URI with query parameters
-        $RelativeUri = "platform/vendors?startDate=$($Start)&endDate=$($End)"
+        $RelativeUri = "platform/pages?pageId=$($PageID)&startDate=$($Start)&endDate=$($End)"
 
         if($ProjectUUIDs){
             $ProjectUUIDParam = $ProjectUUIDs | ForEach-Object { "projectUuids[]=$_" }

@@ -5,9 +5,9 @@
     Returns the specified policy's configuration.
 .PARAMETER PolicyUuid
     UUID of the policy to return configuration details for
-    Use Get-FerootPolicies to get Policy UUIDs
+    Use Get-FerootPolicy to get Policy UUIDs
 .EXAMPLE
-    Get-FerootIssueDetails -IssueUuid '00000000-0000-0000-0000-000000000000'
+    Get-FerootPolicyConfiguration -PolicyUuid '00000000-0000-0000-0000-000000000000'
 #>
 function Get-FerootPolicyConfiguration{
     param (

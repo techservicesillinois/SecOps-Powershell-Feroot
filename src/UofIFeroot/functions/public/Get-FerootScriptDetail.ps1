@@ -1,8 +1,10 @@
 ﻿<#
 .Synopsis
-    Returns the overall vendor statistics and a list of vendors' products detected in Feroot Projects within a specified time range.
+    Returns the details of a script's activity within a specified time interval.
 .DESCRIPTION
-    Returns the overall vendor statistics and a list of vendors' products detected in Feroot Projects within a specified time range.
+    Returns the details of a script's activity within a specified time interval.
+.PARAMETER ScriptID
+    The ID of a vendor's product
 .PARAMETER ProjectUUIDs
     An array of Project UUIDs
     Use Get-FerootProject to get Project UUIDs
@@ -11,13 +13,15 @@
 .PARAMETER EndDate
     Timestamp of the end of the date range
 .EXAMPLE
-    Get-FerootVendorReport -StartDate (Get-Date).AddDays(-30) -EndDate (Get-Date)
+    Get-FerootScriptDetail -StartDate (Get-Date).AddDays(-30) -EndDate (Get-Date) -ScriptID 'd696075d6d1219c32e55df901f90491c4899548b'
 .EXAMPLE
-    Get-FerootVendorReport -ProjectUUIDs @('00000000-0000-0000-0000-000000000000', '11111111-0000-0000-0000-1111111111111') -StartDate (Get-Date).AddDays(-30) -EndDate (Get-Date)
+    Get-FerootScriptDetail -ScriptID "d696075d6d1219c32e55df901f90491c4899548b" -ProjectUUIDs @('00000000-0000-0000-0000-000000000000') -StartDate (Get-Date).AddDays(-30) -EndDate (Get-Date)
 #>
-function Get-FerootVendorReport{
+function Get-FerootScriptDetail{
     [CmdletBinding()]
     param (
+        [Parameter(Mandatory=$true)]
+        [string]$ScriptID,
         [string[]]$ProjectUUIDs,
         [Parameter(Mandatory=$true)]
         [datetime]$StartDate,
@@ -32,7 +36,7 @@ function Get-FerootVendorReport{
         $End = ([DateTimeOffset]$EndDate).ToUnixTimeSeconds()*1000
 
         # Complete URI with query parameters
-        $RelativeUri = "platform/vendors?startDate=$($Start)&endDate=$($End)"
+        $RelativeUri = "platform/scripts/$($ScriptID)?startDate=$($Start)&endDate=$($End)"
 
         if($ProjectUUIDs){
             $ProjectUUIDParam = $ProjectUUIDs | ForEach-Object { "projectUuids[]=$_" }

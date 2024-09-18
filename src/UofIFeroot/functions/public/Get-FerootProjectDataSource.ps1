@@ -5,11 +5,11 @@
     Returns a project's data sources from Feroot
 .PARAMETER ProjectUUID
     Project UUID to return the data sources from
-    Use Get-FerootProjects to get Project UUIDs
+    Use Get-FerootProject to get Project UUIDs
 .EXAMPLE
-    Get-FerootProjectDataSources -ProjectUUID '00000000-0000-0000-0000-000000000000'
+    Get-FerootProjectDataSource -ProjectUUID '00000000-0000-0000-0000-000000000000'
 #>
-function Get-FerootProjectDataSources{
+function Get-FerootProjectDataSource{
     [CmdletBinding()]
     param (
         [Parameter(Mandatory=$true)]

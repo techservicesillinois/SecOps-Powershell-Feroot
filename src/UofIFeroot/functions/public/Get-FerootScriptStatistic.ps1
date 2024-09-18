@@ -1,8 +1,8 @@
 ﻿<#
 .Synopsis
-    Returns the overall vendor statistics and a list of vendors' products detected in Feroot Projects within a specified time range.
+    Returns a summary with total counts of various scripts detected in your Feroot Project(s) within a specified time range.
 .DESCRIPTION
-    Returns the overall vendor statistics and a list of vendors' products detected in Feroot Projects within a specified time range.
+    Returns a summary with total counts of various scripts detected in your Feroot Project(s) within a specified time range.
 .PARAMETER ProjectUUIDs
     An array of Project UUIDs
     Use Get-FerootProject to get Project UUIDs
@@ -11,11 +11,11 @@
 .PARAMETER EndDate
     Timestamp of the end of the date range
 .EXAMPLE
-    Get-FerootVendorReport -StartDate (Get-Date).AddDays(-30) -EndDate (Get-Date)
+    Get-FerootScriptStatistic -StartDate (Get-Date).AddDays(-30) -EndDate (Get-Date)
 .EXAMPLE
-    Get-FerootVendorReport -ProjectUUIDs @('00000000-0000-0000-0000-000000000000', '11111111-0000-0000-0000-1111111111111') -StartDate (Get-Date).AddDays(-30) -EndDate (Get-Date)
+    Get-FerootScriptStatistic -ProjectUUIDs @('00000000-0000-0000-0000-000000000000', '11111111-0000-0000-0000-1111111111111') -StartDate (Get-Date).AddDays(-30) -EndDate (Get-Date)
 #>
-function Get-FerootVendorReport{
+function Get-FerootScriptStatistic{
     [CmdletBinding()]
     param (
         [string[]]$ProjectUUIDs,
@@ -32,7 +32,7 @@ function Get-FerootVendorReport{
         $End = ([DateTimeOffset]$EndDate).ToUnixTimeSeconds()*1000
 
         # Complete URI with query parameters
-        $RelativeUri = "platform/vendors?startDate=$($Start)&endDate=$($End)"
+        $RelativeUri = "platform/scripts/stats?startDate=$($Start)&endDate=$($End)"
 
         if($ProjectUUIDs){
             $ProjectUUIDParam = $ProjectUUIDs | ForEach-Object { "projectUuids[]=$_" }
